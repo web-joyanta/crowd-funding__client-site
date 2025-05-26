@@ -21,7 +21,7 @@ const Login = () => {
                                 <span>Continue With Google</span>
                                 <span></span>
                             </button>
-                            <p className="text-center mt-3">Not on Oxyy yet? <Link to="/signUp" className="underline text-[#218838] font-medium">Sign Up</Link></p>
+                            <p className="text-center mt-3">Not on Oxyy yet? <Link to="/register" className="underline text-[#218838] font-medium">Register</Link></p>
                             <Link to="/" className="mx-auto text-4xl text-[#218838] mt-4" ><IoArrowBackCircleOutline/></Link>
                         </fieldset>
                     </div>
