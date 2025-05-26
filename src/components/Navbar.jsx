@@ -4,7 +4,7 @@ const Navbar = () => {
     const links = <>
         <NavLink to="/"><li><a>Home</a></li></NavLink>
         <NavLink to="/campaigns"><li><a>All Campaign</a></li></NavLink>
-        <NavLink to="/addCampaign"><li><a>Add New Campaign</a></li></NavLink>
+        <NavLink to="/addCampaign"><li><a>Add Campaign</a></li></NavLink>
         <NavLink to="/myCampaign"><li><a>My Campaign</a></li></NavLink>
         <NavLink to="/myDonations"><li><a>My Donations</a></li></NavLink>
     </>
@@ -22,9 +22,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to="/">
-                        <img className="w-32" src={logo} alt="logo" />
-                    </Link>
+                    <Link to="/"><img className="w-32" src={logo} alt="logo" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -32,9 +30,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/login">
-                        <a className="btn btn-md lg:btn-lg text-gray-200 bg-[#674DF3]">Login</a>
-                    </Link>
+                    <Link to="/login" className="btn btn-md lg:btn-lg text-gray-200 bg-[#674DF3]">Login</Link>
                 </div>
             </div>
         </div>

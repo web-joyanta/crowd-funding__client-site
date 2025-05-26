@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Forget from "../pages/Forget";
+import AddCampaign from "../pages/AddCampaign";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 path: "/forget",
                 element: <Forget></Forget>
             },
+            {
+                path: "/addCampaign",
+                element: <AddCampaign></AddCampaign>
+            }
         ]
     },
 ]);

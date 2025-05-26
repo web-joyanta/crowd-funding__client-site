@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import login_bd from "../assets/login-bd.jpg"
-import { FaGoogle } from "react-icons/fa";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 const Forget = () => {
