@@ -5,6 +5,8 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
+import auth from "../firebase/firebase.init";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -13,14 +15,14 @@ const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault();
         const from = e.target;
-        // const name = from.name.value;
+        const name = from.name.value;
         const email = from.email.value;
-        // const photo = from.photo.value;
+        const photo = from.photo.value;
         const password = from.password.value;
 
 
         // password validation
-        if (password.length <= 6) {
+        if (password.length < 6) {
             return setError("Use at least 6 characters.");
         } else if (!/[A-Z]/.test(password)) {
             return setError("Add an uppercase letter.");
@@ -33,6 +35,17 @@ const Register = () => {
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                const profile = {
+                    displayName: name,
+                    photoURL: photo,
+                }
+                updateProfile(auth.currentUser, profile)
+                    .then(() => {
+                        console.log("user profile update");
+                    })
+                    .catch(() => {
+                        console.log("user profile update error");
+                    })
                 Swal.fire({
                     title: "Successful!",
                     icon: "success",
@@ -53,10 +66,10 @@ const Register = () => {
                     <div className="card-body">
                         <h2 className="text-center text-3xl font-medium">Register</h2>
                         <form onSubmit={handleRegister} className="fieldset text-[15px]">
-                            <input name="name" type="text" className="input w-full  rounded-4xl border-2 p-6 mt-2" placeholder="Enter Name" />
-                            <input name="email" type="email" className="input w-full  rounded-4xl border-2 p-6 my-2" placeholder="Enter Email" />
-                            <input name="photo" type="url" className="input w-full  rounded-4xl border-2 p-6 mb-2" placeholder="Enter Photo Url" />
-                            <input name="password" type="password" className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
+                            <input name="name" type="text" required className="input w-full  rounded-4xl border-2 p-6 mt-2" placeholder="Enter Name" />
+                            <input name="email" type="email" required className="input w-full  rounded-4xl border-2 p-6 my-2" placeholder="Enter Email" />
+                            <input name="photo" type="url" required className="input w-full  rounded-4xl border-2 p-6 mb-2" placeholder="Enter Photo Url" />
+                            <input name="password" type="password" required className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
                             <button className="btn bg-[#218838] text-white text-[15px] w-full rounded-4xl p-6 mt-2">Register</button>
                             <p className="text-center font-medium">OR</p>
                             <button className="btn flex justify-between bg-[#1874eb] text-white text-[15px] w-full rounded-4xl p-6">
