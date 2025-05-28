@@ -2,11 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png"
 const Navbar = () => {
     const links = <>
-        <NavLink to="/"><li><a>Home</a></li></NavLink>
-        <NavLink to="/campaigns"><li><a>All Campaign</a></li></NavLink>
-        <NavLink to="/addCampaign"><li><a>Add Campaign</a></li></NavLink>
-        <NavLink to="/myCampaign"><li><a>My Campaign</a></li></NavLink>
-        <NavLink to="/myDonations"><li><a>My Donations</a></li></NavLink>
+        <NavLink className="mr-4" to="/"><li>Home</li></NavLink>
+        <NavLink className="mr-4" to="/campaigns"><li>All Campaign</li></NavLink>
+        <NavLink className="mr-4" to="/addCampaign"><li>Add Campaign</li></NavLink>
+        <NavLink className="mr-4" to="/myCampaign"><li>My Campaign</li></NavLink>
+        <NavLink className="mr-4" to="/myDonations"><li>My Donations</li></NavLink>
     </>
     return (
         <div className="bg-base-100 shadow-sm py-2 md:py-5">

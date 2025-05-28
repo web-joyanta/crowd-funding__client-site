@@ -7,8 +7,18 @@ import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { userLogin } = useContext(AuthContext);
+    const { userLogin, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState("");
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                console.log("google login");
+            })
+            .catch(()=>{
+                console.log("google login error");
+            })
+    }
     const handleLogin = (e) => {
         e.preventDefault();
         const from = e.target;
@@ -16,15 +26,13 @@ const Login = () => {
         const password = from.password.value;
 
         userLogin(email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+            .then(() => {
                 Swal.fire({
                     title: "Successful!",
                     icon: "success",
                     draggable: true
                 });
                 setError("")
-                console.log(user);
             })
             .catch((error) => {
                 const errorMessage = error.code;
@@ -43,10 +51,10 @@ const Login = () => {
                         <form onSubmit={handleLogin} className="fieldset text-[15px]">
                             <input name="email" type="email" className="input w-full  rounded-4xl border-2 p-6 my-2" placeholder="Enter Email" />
                             <input name="password" type="password" className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
-                            <Link to="/forget" className="text-center mt-2 mb-4"><a className="link link-hover underline">Forgot password ?</a></Link>
+                            <Link to="/forget" className="text-center mt-2 mb-4 link link-hover underline">Forgot password ?</Link>
                             <button className="btn bg-[#218838] text-white text-[15px] w-full rounded-4xl p-6">Log in</button>
                             <p className="text-center font-medium">OR</p>
-                            <button className="btn flex justify-between bg-[#1874eb] text-white text-[15px] w-full rounded-4xl p-6">
+                            <button type="button" onClick={handleGoogleLogin} className="btn flex justify-between bg-[#1874eb] text-white text-[15px] w-full rounded-4xl p-6">
                                 <FaGoogle className="text-2xl" />
                                 <span>Continue With Google</span>
                                 <span></span>

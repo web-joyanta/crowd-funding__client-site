@@ -9,8 +9,18 @@ import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.init";
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                console.log("google login");
+            })
+            .catch(()=>{
+                console.log("google login error");
+            })
+    }
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -41,16 +51,15 @@ const Register = () => {
                 }
                 updateProfile(auth.currentUser, profile)
                     .then(() => {
-                        console.log("user profile update");
+                        Swal.fire({
+                            title: "Successful!",
+                            icon: "success",
+                            draggable: true
+                        });
                     })
                     .catch(() => {
                         console.log("user profile update error");
                     })
-                Swal.fire({
-                    title: "Successful!",
-                    icon: "success",
-                    draggable: true
-                });
                 console.log(user);
             })
             .catch((error) => {
@@ -72,7 +81,7 @@ const Register = () => {
                             <input name="password" type="password" required className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
                             <button className="btn bg-[#218838] text-white text-[15px] w-full rounded-4xl p-6 mt-2">Register</button>
                             <p className="text-center font-medium">OR</p>
-                            <button className="btn flex justify-between bg-[#1874eb] text-white text-[15px] w-full rounded-4xl p-6">
+                            <button onClick={handleGoogleLogin} type="button" className="btn flex justify-between bg-[#1874eb] text-white text-[15px] w-full rounded-4xl p-6">
                                 <FaGoogle className="text-2xl" />
                                 <span>Continue With Google</span>
                                 <span></span>
