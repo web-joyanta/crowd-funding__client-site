@@ -1,24 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import login_bd from "../assets/login-bd.jpg"
 import { FaGoogle } from "react-icons/fa";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.init";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const { createUser, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(() => {
-                console.log("google login");
+                toast.success("Login successful!");
+                navigate("/");
             })
-            .catch(()=>{
-                console.log("google login error");
+            .catch((error) => {
+                const errorMessage = error.code.message;
+                toast.error(errorMessage);
             })
     }
 
@@ -43,30 +46,26 @@ const Register = () => {
         }
 
         createUser(email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+            .then(() => {
                 const profile = {
                     displayName: name,
                     photoURL: photo,
                 }
                 updateProfile(auth.currentUser, profile)
                     .then(() => {
-                        Swal.fire({
-                            title: "Successful!",
-                            icon: "success",
-                            draggable: true
-                        });
+                        from.reset();
+                        navigate("/");
+                        toast.success("Register successful!");
                     })
-                    .catch(() => {
-                        console.log("user profile update error");
+                    .catch((error) => {
+                        const errorMessage = error.code.message;
+                        toast.error(errorMessage);
                     })
-                console.log(user);
             })
             .catch((error) => {
                 const errorMessage = error.code.message;
-                console.log(errorMessage);
+                toast.error(errorMessage);
             });
-        from.reset();
     }
     return (
         <div>

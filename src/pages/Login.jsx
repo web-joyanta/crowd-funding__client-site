@@ -1,22 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import login_bd from "../assets/login-bd.jpg"
 import { FaGoogle } from "react-icons/fa";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const { userLogin, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(() => {
-                console.log("google login");
+                navigate("/");
+                toast.success("Login successful!");
             })
-            .catch(()=>{
-                console.log("google login error");
+            .catch((error) => {
+                const errorMessage = error.code.message;
+                toast.error(errorMessage);
             })
     }
     const handleLogin = (e) => {
@@ -27,20 +30,18 @@ const Login = () => {
 
         userLogin(email, password)
             .then(() => {
-                Swal.fire({
-                    title: "Successful!",
-                    icon: "success",
-                    draggable: true
-                });
-                setError("")
+                setError("");
+                from.reset();
+                navigate("/");
+                toast.success("Login successful!");
             })
             .catch((error) => {
                 const errorMessage = error.code;
                 if (errorMessage) {
                     setError("Invalid email or password.");
+                    toast.error("Invalid email or password.");
                 }
             });
-        from.reset();
     }
     return (
         <div>
@@ -49,8 +50,8 @@ const Login = () => {
                     <div className="card-body">
                         <h2 className="text-center text-3xl font-medium">Login</h2>
                         <form onSubmit={handleLogin} className="fieldset text-[15px]">
-                            <input name="email" type="email" className="input w-full  rounded-4xl border-2 p-6 my-2" placeholder="Enter Email" />
-                            <input name="password" type="password" className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
+                            <input name="email" type="email" required className="input w-full  rounded-4xl border-2 p-6 my-2" placeholder="Enter Email" />
+                            <input name="password" type="password" required className="input w-full rounded-4xl border-2 p-6" placeholder="Enter Password" />
                             <Link to="/forget" className="text-center mt-2 mb-4 link link-hover underline">Forgot password ?</Link>
                             <button className="btn bg-[#218838] text-white text-[15px] w-full rounded-4xl p-6">Log in</button>
                             <p className="text-center font-medium">OR</p>
