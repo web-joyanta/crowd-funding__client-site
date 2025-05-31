@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Swal from "sweetalert2";
 
 const AddCampaign = () => {
     const { user } = useContext(AuthContext);
@@ -24,7 +25,28 @@ const AddCampaign = () => {
         const amount = form.amount.value;
         const userName = user?.displayName;
         const userEmail = user?.email;
-        console.log(photo, title, date, amount, description, campaignType, userName, userEmail);
+        const newCampaign = { photo, title, date, amount, description, campaignType, userName, userEmail };
+        fetch("http://localhost:5000/campaigns", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newCampaign)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    form.reset();
+                    setSelectedDate(null);
+                    console.log(data);
+                    Swal.fire({
+                        title: "success!",
+                         text: 'campaign added successfully',
+                        icon: "success",
+                        draggable: true
+                    });
+                }
+            })
     }
     return (
         <div>
