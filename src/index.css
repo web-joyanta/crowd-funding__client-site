@@ -8,6 +8,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 .active{
+    padding: 2px 10px;
+    background: linear-gradient(90deg, rgba(103, 77, 243, 0.1) 0%, rgba(103, 77, 243, 0.1) 100%);
+    border: 1px solid rgba(103, 77, 243, 0.5);
     color: #674DF3;
-    font-weight: 800;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(103, 77, 243, 0.5);
 }

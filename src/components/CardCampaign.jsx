@@ -14,10 +14,6 @@ const CardCampaign = ({ campaign }) => {
     const diffTime = targetDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    // if (diffDays === 0) {
-    //     return null;
-    // }
-
     const shortText = description.split(' ').slice(0, 25).join(' ') + '...';
     return (
         <div className="transition-transform duration-300 hover:scale-105">

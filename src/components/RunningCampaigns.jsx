@@ -13,7 +13,6 @@ const RunningCampaigns = ({ data }) => {
         return targetDate > today;
     });
     const dataReverse = [...result].reverse();
-    console.log(data);
     return (
         <div className="max-w-7xl mx-auto px-5 mt-7">
             <h2 className="text-center text-3xl md:text-4xl font-bold mt-20">Running Campaigns</h2>
