@@ -15,7 +15,7 @@ const Navbar = () => {
     const handleLogout = () => {
         userLogout()
             .then(() => {
-                toast.success("Log-out successful.");
+                toast.success("Log-Out.");
             })
             .catch((error) => {
                 const errorMessage = error.code.message;
@@ -23,7 +23,7 @@ const Navbar = () => {
             });
     }
     return (
-        <div className="bg-base-100 shadow-sm py-2 md:py-5">
+        <div className="bg-base-100 shadow-sm py-2 md:py-2 sticky top-0 z-20">
             <div className="navbar max-w-7xl mx-auto px-5">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -36,7 +36,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to="/"><img className="w-32" src={logo} alt="logo" /></Link>
+                    <Link to="/"><img className="w-24 lg:w-32" src={logo} alt="logo" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -44,26 +44,30 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-
                     {
-                        user?.email ? <div className="relative group dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src={user?.photoURL} alt="profile" />
+                        user?.email ?
+                            <div className="relative group inline-block">
+                                {/* Avatar Button Trigger */}
+                                <button className="flex items-center space-x-2 p-2 rounded-full">
+                                    <img
+                                        src={user?.photoURL || 'https://i.ibb.co/qYXx2bJW/6515860.webp'}
+                                        alt="Avatar"
+                                        className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-[#674DF3]"
+                                    />
+                                </button>
+                                {/* Dropdown Menu */}
+                                <div className="absolute right-0 mt-2 w-52 lg:w-64 bg-white shadow-xl rounded-2xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 space-y-2">
+                                    <div className="flex flex-col items-center border-b pb-3">
+                                        <p className="lg:text-lg font-semibold">{user?.displayName || 'Guest User'}</p>
+                                        <p className="text-xs lg:text-sm text-gray-500">{user?.email || 'no-email@example.com'}</p>
+                                    </div>
+                                    <div>
+                                        <button onClick={handleLogout} className="w-full bg-[#674DF3] hover:bg-[#563bd1] text-white text-sm font-medium py-1 lg:py-2 px-4 rounded-lg transition">Log out </button>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <ul
-                                className="absolute right-0 menu menu-sm bg-gray-100 rounded-box p-2 shadow opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10 text-center">
-                                <li><a>{user?.displayName}</a></li>
-                                <li><a>{user?.email}</a></li>
-                                <button onClick={handleLogout} className="btn btn-xs text-white bg-[#674DF3] mt-3"><a>Log out</a></button>
-                            </ul>
-                        </div>
-                            :
-                            <Link to="/login" className="btn btn-md lg:btn-lg text-gray-200 bg-[#674DF3]">Login</Link>
+                            </div> :
+                            <Link to="/login" className="btn btn-md text-gray-200 bg-[#674DF3]">Login</Link>
                     }
-
                 </div>
             </div>
         </div>

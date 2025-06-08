@@ -23,9 +23,10 @@ const AddCampaign = () => {
         const date = form.date.value;
         const description = form.description.value;
         const amount = form.amount.value;
+        const userPhoto = user?.photoURL;
         const userName = user?.displayName;
         const userEmail = user?.email;
-        const newCampaign = { photo, title, date, amount, description, campaignType, userName, userEmail };
+        const newCampaign = { photo, title, date, amount, description, campaignType, userPhoto, userName, userEmail };
         fetch("http://localhost:5000/campaigns", {
             method: "POST",
             headers: {

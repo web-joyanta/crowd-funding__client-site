@@ -4,7 +4,7 @@ import CardCampaign from '../components/CardCampaign';
 const AllCampaign = () => {
     const loaderData = useLoaderData();
     const dataReverse = [...loaderData].reverse();
-    console.log(dataReverse);
+    // console.log(dataReverse);
     return (
         <div className="max-w-7xl mx-auto px-5 mt-7">
             <h2 className="text-3xl md:text-4xl font-bold mt-20">All Campaigns</h2>

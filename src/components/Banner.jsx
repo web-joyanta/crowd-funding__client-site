@@ -38,7 +38,10 @@ const Banner = () => {
                 {/* slider 01 */}
                 <SwiperSlide className="relative text-lg">
                     <div className="relative bg-center bg-cover w-full h-96 lg:h-screen"
-                        style={{ backgroundImage: `url(${slider1})` }}>
+                        style={{
+                            backgroundImage: `url(${slider1})`,
+                            height: 'calc(100vh - 250px)'
+                        }}>
                         <div className="flex text-white flex-col justify-center items-center text-center h-full gap-3 md:gap-6">
                             <img src={layerIcon} alt="layer-Icon" />
                             <p className="underline text-sm md:text-xl font-medium"> Start Your Crowdfunding Journey Today!</p>
@@ -57,19 +60,22 @@ const Banner = () => {
                                 wrapper="h1"
                                 speed={50}
                                 repeat={Infinity}
-                                className="text-4xl md:text-7xl font-extrabold text-white text-center"
+                                className="text-4xl md:text-7xl font-extrabold text-white"
                             />
                             <Link to="/campaigns" className="mt-2 lg:mt-5" >
-                                <button className="btn md:btn-lg text-sm bg-[#29F0B4] border-hidden">All Campaign</button>
+                                <button className="btn md:btn-lg text-sm bg-linear-to-r from-sky-500 to-violet-500 border-hidden text-white">All Campaign</button>
                             </Link>
                         </div>
-                        <img className="absolute right-0 bottom-0 w-32 md:w-xl" src={layer} alt="slider-1" />
+                        <img className="absolute right-0 bottom-0 w-32 md:w-48 lg:w-72" src={layer} alt="slider-1" />
                     </div>
                 </SwiperSlide>
                 {/* slider 02 */}
                 <SwiperSlide className="relative text-lg">
-                    <div className="relative bg-center bg-cover w-full h-96 lg:h-screen"
-                        style={{ backgroundImage: `url(${slider2})` }}>
+                    <div className="relative bg-center bg-cover w-full h-96  lg:h-screen"
+                        style={{
+                            backgroundImage: `url(${slider2})`,
+                            height: 'calc(100vh - 250px)'
+                        }}>
                         <div className="flex text-white flex-col justify-center items-center text-center h-full gap-3 md:gap-6">
                             <img src={layerIcon} alt="layer-Icon" />
                             <p className="underline text-sm md:text-xl font-medium"> Anyone can start a campaign.</p>
@@ -88,19 +94,22 @@ const Banner = () => {
                                 wrapper="h1"
                                 speed={50}
                                 repeat={Infinity}
-                                className="text-4xl md:text-7xl font-extrabold text-white text-center"
+                                className="text-4xl md:text-7xl font-extrabold text-white"
                             />
                             <Link to="/campaigns" className="mt-2 lg:mt-5" >
-                                <button className="btn md:btn-lg text-sm bg-[#29F0B4] border-hidden">All Campaign</button>
+                                <button className="btn md:btn-lg text-sm bg-linear-to-r from-sky-500 to-violet-500 border-hidden text-white">All Campaign</button>
                             </Link>
                         </div>
-                        <img className="absolute right-0 bottom-0 w-32 md:w-xl" src={layer} alt="slider-1" />
+                        <img className="absolute right-0 bottom-0 w-32 md:w-48 lg:w-72" src={layer} alt="slider-1" />
                     </div>
                 </SwiperSlide>
                 {/* slider 03 */}
-                <SwiperSlide className="relative text-lg">
-                    <div className="relative bg-center bg-cover w-full h-96 lg:h-screen"
-                        style={{ backgroundImage: `url(${slider3})` }}>
+                <SwiperSlide className="relative text-lg ">
+                    <div className="relative bg-center bg-cover w-full h-96 lg:h-screen "
+                        style={{
+                            backgroundImage: `url(${slider3})`,
+                            height: 'calc(100vh - 250px)'
+                        }}>
                         <div className="flex text-white flex-col justify-center items-center text-center h-full gap-3 md:gap-6">
                             <img src={layerIcon} alt="layer-Icon" />
                             <p className="underline text-sm md:text-xl font-medium">Equity-based gives business shares.</p>
@@ -119,13 +128,13 @@ const Banner = () => {
                                 wrapper="h1"
                                 speed={50}
                                 repeat={Infinity}
-                                className="text-4xl md:text-7xl font-extrabold text-white text-center"
+                                className="text-4xl md:text-7xl font-extrabold text-white"
                             />
                             <Link to="/campaigns" className="mt-2 lg:mt-5" >
-                                <button className="btn md:btn-lg text-sm bg-[#29F0B4] border-hidden">All Campaign</button>
+                                <button className="btn md:btn-lg text-sm bg-linear-to-r from-sky-500 to-violet-500 border-hidden text-white">All Campaign</button>
                             </Link>
                         </div>
-                        <img className="absolute right-0 bottom-0 w-32 md:w-xl" src={layer} alt="slider-1" />
+                        <img className="absolute right-0 bottom-0 w-32 md:w-48 lg:w-72" src={layer} alt="slider-1" />
                     </div>
                 </SwiperSlide>
             </Swiper>
