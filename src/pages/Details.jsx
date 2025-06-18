@@ -7,10 +7,13 @@ import { GrShareOption } from "react-icons/gr";
 import { toast } from "react-toastify";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { CiCalendar } from "react-icons/ci";
+import moment from "moment/moment";
 
 const Details = () => {
     const loaderDetailsData = useLoaderData();
     const { title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail } = loaderDetailsData;
+
+
     const [dd, mm, yyyy] = date.split('/');
     const targetDate = new Date(`${yyyy}-${mm}-${dd}`);
     const today = new Date();
@@ -20,10 +23,65 @@ const Details = () => {
 
     const diffTime = targetDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    console.log(loaderDetailsData);
+
+    const handleDonate = (e) => {
+        e.preventDefault();
+        const donate = e.target.amount.value;
+        const donateDate = moment().format('ll');
+        const donateInfo = {
+            title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail, donate, donateDate,
+        }
+        fetch("http://localhost:5000/donateds", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(donateInfo),
+        })
+            .then(data => data.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success(`Thank you for your donation of $${donate}!`);
+                }
+            })
+        // console.log("Donated: $", amount);
+        document.getElementById('my_modal_3').close();
+    };
+
     return (
         <div className="max-w-7xl mx-auto px-5 mt-7">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-5 lg:gap-x-5 place-items-start">
+                {/* modal showing */}
+                <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box">
+                        <form onSubmit={handleDonate} method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button type="button" onClick={() => document.getElementById('my_modal_3').close()} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+
+                            <h3 className="font-medium">Support This Campaign</h3>
+                            <hr className="text-gray-300 mt-3" />
+                            <div className="flex items-center gap-4 my-5">
+                                <img className="w-15 h-15 rounded-md" src={photo} alt="img" />
+                                <div>
+                                    <h2 className="font-medium">{title}</h2>
+                                    <p className="text-xs">by {userName}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="label text-[14px] font-medium text-[#374151]"><FiDollarSign /> Minimum Amount (${amount})</label>
+                                <input name="amount" min={amount} type="number" defaultValue={amount} className="input w-full mb-5" required placeholder={`Enter Amount Minimum $${amount}`} />
+                            </div>
+                            <div className="bg-blue-50 text-xs text-primary p-3 rounded-md mb-7">
+                                <p>You are donatingas <span className="font-bold">{userName}</span></p>
+                                <p>{`(${userEmail})`}</p>
+                            </div>
+                            <div className="flex justify-end gap-3">
+                                <button type="button" onClick={() => document.getElementById('my_modal_3').close()} className="btn">Cancel</button>
+                                <button type="submit" className="btn btn-primary">Donate Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
                 {/* card 1*/}
                 <div className="col-span-2">
                     <div className="card bg-base-100 shadow-md">
@@ -71,11 +129,11 @@ const Details = () => {
                             {/* buttons */}
                             <div className="card-actions">
                                 {
-                                    diffDays > 0 ? <button className="btn w-full btn-primary mb-2"><FaRegHeart /> Donate Now</button> :
+                                    diffDays > 0 ? <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn w-full btn-primary mb-2"><FaRegHeart /> Donate Now</button> :
                                         <button className="btn btn-disabled w-full btn-primary mb-2"><FaRegHeart /> Donate Now</button>
                                 }
-                                <button onClick={() => toast.success("Share link copied to clipboard!")} class="btn btn-outline btn-primary"><GrShareOption /> Share</button>
-                                <button onClick={() => toast.warning("Report submitted. Thank you for helping keep CrowdCube safe.")} class="btn btn-outline btn-primary"><FiFlag /> Report</button>
+                                <button onClick={() => toast.success("Share link copied to clipboard!")} className="btn btn-outline btn-primary"><GrShareOption /> Share</button>
+                                <button onClick={() => toast.warning("Report submitted. Thank you for helping keep CrowdCube safe.")} className="btn btn-outline btn-primary"><FiFlag /> Report</button>
                             </div>
                         </div>
                     </div>
@@ -106,10 +164,9 @@ const Details = () => {
                             </div>
                             {/* Donate Button */}
                             {
-                                diffDays > 0 ? <button className="btn lg:btn-lg btn-primary btn-block mt-7"><FaRegHeart /> Donate Now</button> :
+                                diffDays > 0 ? <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn lg:btn-lg btn-primary btn-block mt-7"><FaRegHeart /> Donate Now</button> :
                                     <button className="hidden btn lg:btn-lg btn-primary btn-block mt-7"><FaRegHeart /> Donate Now</button>
                             }
-                            
                             {/* Campaign Creator */}
                             <div className="mt-7">
                                 <h4 className="text-[16px] font-medium">Campaign Creator</h4>

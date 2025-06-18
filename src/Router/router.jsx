@@ -7,6 +7,7 @@ import Forget from "../pages/Forget";
 import AddCampaign from "../pages/AddCampaign";
 import AllCampaign from "../pages/AllCampaign";
 import Details from "../pages/Details";
+import MyDonations from "../pages/MyDonations";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,16 @@ const router = createBrowserRouter([
                 path: "/campaign/:id",
                 loader: ({params})=> fetch(`http://localhost:5000/campaign/${params.id}`),
                 element: <Details></Details>
+            },
+            {
+                path: "/donate/:id",
+                loader: ({params})=> fetch(`http://localhost:5000/donate/${params.id}`),
+                element: <Details></Details>
+            },
+            {
+                path: "/myDonations",
+                loader: ()=> fetch("http://localhost:5000/donateds"),
+                element: <MyDonations></MyDonations>,
             }
         ]
     },

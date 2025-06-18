@@ -42,7 +42,7 @@ const AddCampaign = () => {
                     console.log(data);
                     Swal.fire({
                         title: "success!",
-                         text: 'campaign added successfully',
+                        text: 'campaign added successfully',
                         icon: "success",
                         draggable: true
                     });
