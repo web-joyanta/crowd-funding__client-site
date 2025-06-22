@@ -68,10 +68,10 @@ const AddCampaign = () => {
                                     <div>
                                         <label className="label text-[14px] font-medium text-[#374151]"><CgNotes />Campaign Type</label>
                                         <select name="campaignType" required defaultValue="Pick a color" className="select w-full mb-4">
-                                            <option>Personal Issue</option>
+                                            <option>Personal</option>
                                             <option>Startup</option>
                                             <option>Business</option>
-                                            <option>Creative Ideas</option>
+                                            <option>Creative</option>
                                         </select>
                                     </div>
                                     <div className="w-full">

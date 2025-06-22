@@ -1,0 +1,34 @@
+import { useLoaderData } from "react-router-dom";
+import TableCampaing from "../components/TableCampaign";
+
+const MyCampaign = () => {
+    const loaderData = useLoaderData();
+    const dataReverse = [...loaderData].reverse();
+    return (
+        <div className="max-w-7xl mx-auto px-5 mt-7">
+            <h2 className="text-3xl md:text-4xl font-bold mt-20">My Campaigns</h2>
+            <p className="text-[#4B5563] my-5">Manage all your created campaigns</p>
+            <div className="overflow-x-auto w-full shadow-2xl rounded-lg">
+                <table className="min-w-[600px] w-full text-left">
+                    <thead className="bg-[#F3F4F6]">
+                        <tr className="border-b border-[#d6d6d6]">
+                            <th className="py-2 px-4 w-2/5">CAMPAIGN</th>
+                            <th className="py-2 px-4 w-1/6">TYPE</th>
+                            <th className="py-2 px-4 w-1/6">CREATED DATE</th>
+                            <th className="py-2 px-4 w-1/4 text-right">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            dataReverse.map(campaign => (
+                                <TableCampaing key={campaign._id} campaign={campaign} />
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+export default MyCampaign;
