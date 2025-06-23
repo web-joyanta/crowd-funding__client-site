@@ -8,10 +8,16 @@ import { toast } from "react-toastify";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { CiCalendar } from "react-icons/ci";
 import moment from "moment/moment";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Details = () => {
     const loaderDetailsData = useLoaderData();
     const { title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail } = loaderDetailsData;
+
+    const { user } = useContext(AuthContext);
+    const donateName = user.displayName;
+    const donateEmail = user.email;
 
 
     const [dd, mm, yyyy] = date.split('/');
@@ -29,7 +35,7 @@ const Details = () => {
         const donate = e.target.amount.value;
         const donateDate = moment().format('ll');
         const donateInfo = {
-            title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail, donate, donateDate,
+            title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail, donate, donateDate, donateName, donateEmail
         }
         fetch("http://localhost:5000/donateds", {
             method: "POST",
@@ -170,8 +176,7 @@ const Details = () => {
                             {/* Campaign Creator */}
                             <div className="mt-7">
                                 <h4 className="text-[16px] font-medium">Campaign Creator</h4>
-                                <div className="flex items-center gap-3 mt-4">
-                                    <img className="w-10 rounded-full" src={userPhoto || "https://i.ibb.co/qYXx2bJW/6515860.webp"} alt="user-img" />
+                                <div className="flex items-center gap-3 mt-4">                                    <img className="w-10 rounded-full" src={userPhoto || "https://i.ibb.co/qYXx2bJW/6515860.webp"} />
                                     <div>
                                         <h4 className="font-medium">{userName}</h4>
                                         <p className="text-xs text-[#4B5563]">{userEmail}</p>

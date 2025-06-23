@@ -1,4 +1,4 @@
-import { Link, useNavigate, } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
 import login_bd from "../assets/login-bd.jpg"
 import { FaGoogle } from "react-icons/fa";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -10,11 +10,12 @@ const Login = () => {
     const { userLogin, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const loaction = useLocation();
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(() => {
-                navigate("/");
+                navigate(loaction?.state ? loaction.state : "/");
                 toast.success("Login successful!");
             })
             .catch((error) => {
@@ -32,7 +33,7 @@ const Login = () => {
             .then(() => {
                 setError("");
                 from.reset();
-                navigate("/");
+               navigate(loaction?.state ? loaction.state : "/");
                 toast.success("Login successful!");
             })
             .catch((error) => {

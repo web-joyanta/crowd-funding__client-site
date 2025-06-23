@@ -9,6 +9,7 @@ import AllCampaign from "../pages/AllCampaign";
 import Details from "../pages/Details";
 import MyDonations from "../pages/MyDonations";
 import MyCampaign from "../pages/MyCampaign";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                loader: ()=> fetch("http://localhost:5000/campaigns"),
+                loader: () => fetch("http://localhost:5000/campaigns"),
                 element: <Home></Home>
             },
             {
@@ -34,32 +35,40 @@ const router = createBrowserRouter([
             },
             {
                 path: "/addCampaign",
-                element: <AddCampaign></AddCampaign>
+                element: <PrivateRoute>
+                    <AddCampaign></AddCampaign>
+                </PrivateRoute>
             },
             {
                 path: "/campaigns",
-                loader: ()=> fetch("http://localhost:5000/campaigns"),
+                loader: () => fetch("http://localhost:5000/campaigns"),
                 element: <AllCampaign></AllCampaign>
             },
             {
                 path: "/campaign/:id",
-                loader: ({params})=> fetch(`http://localhost:5000/campaign/${params.id}`),
-                element: <Details></Details>
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params.id}`),
+                element: <PrivateRoute>
+                    <Details></Details>
+                </PrivateRoute>
             },
             {
                 path: "/donate/:id",
-                loader: ({params})=> fetch(`http://localhost:5000/donate/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/donate/${params.id}`),
                 element: <Details></Details>
             },
             {
                 path: "/myDonations",
-                loader: ()=> fetch("http://localhost:5000/donateds"),
-                element: <MyDonations></MyDonations>,
+                loader: () => fetch("http://localhost:5000/donateds"),
+                element: <PrivateRoute>
+                    <MyDonations></MyDonations>
+                </PrivateRoute>
             },
             {
                 path: "/myCampaign",
-                loader: ()=> fetch("http://localhost:5000/campaigns"),
-                element: <MyCampaign></MyCampaign>
+                loader: () => fetch("http://localhost:5000/campaigns"),
+                element: <PrivateRoute>
+                    <MyCampaign></MyCampaign>
+                </PrivateRoute>
             }
         ]
     },
