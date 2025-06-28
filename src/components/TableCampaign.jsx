@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TableCampaign = ({ campaign }) => {
     const shortText = campaign.description
         ? campaign.description.slice(0, 50) + (campaign.description.length > 100 ? '...' : '')
@@ -26,7 +28,9 @@ const TableCampaign = ({ campaign }) => {
             <td className="py-2 px-4">{campaign.date}</td>
             <td className="py-2 px-4 text-right">
                 <div className="flex gap-2 justify-end">
-                    <button className="btn btn-sm btn-primary">Update</button>
+                    <Link to={`/updateCampaign/${campaign._id}`}>
+                        <button className="btn btn-sm btn-primary">Update</button>
+                    </Link>
                     <button className="btn btn-sm btn-error">Delete</button>
                 </div>
             </td>
