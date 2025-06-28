@@ -1,6 +1,36 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const TableCampaign = ({ campaign }) => {
+const TableCampaign = ({ campaign, myCampaigns, setMyCampaigns }) => {
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/campaigns/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your campaign has been deleted.',
+                                'success'
+                            );
+                            const remainingCampaigns = myCampaigns.filter(cam => cam._id !== id);
+                            setMyCampaigns(remainingCampaigns);
+                        }
+                    });
+            }
+        });
+    };
     const shortText = campaign.description
         ? campaign.description.slice(0, 50) + (campaign.description.length > 100 ? '...' : '')
         : '';
@@ -31,7 +61,7 @@ const TableCampaign = ({ campaign }) => {
                     <Link to={`/updateCampaign/${campaign._id}`}>
                         <button className="btn btn-sm btn-primary">Update</button>
                     </Link>
-                    <button className="btn btn-sm btn-error">Delete</button>
+                    <button onClick={() => handleDelete(campaign._id)} className="btn btn-sm btn-error">Delete</button>
                 </div>
             </td>
         </tr>

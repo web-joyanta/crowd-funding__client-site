@@ -1,13 +1,19 @@
 import { Link, useLoaderData } from "react-router-dom";
 import TableCampaing from "../components/TableCampaign";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const MyCampaign = () => {
     const { user } = useContext(AuthContext);
-    const loaderData = useLoaderData();
-    const dataReverse = [...loaderData].reverse();
-    const myCampaigns = user && user.email ? dataReverse.filter(campaign => campaign.userEmail === user.email) : [];
+    const loaderData = useLoaderData() || [];
+    const dataReverse = Array.isArray(loaderData) ? [...loaderData].reverse() : [];
+
+    // Filter campaigns for the logged-in user
+    const [myCampaigns, setMyCampaigns] = useState(
+        user && user.email
+            ? dataReverse.filter(campaign => campaign.userEmail === user.email)
+            : []
+    );
 
     return (
         <div className="max-w-7xl mx-auto px-5 mt-7">
@@ -27,16 +33,21 @@ const MyCampaign = () => {
                         <tbody>
                             {
                                 myCampaigns.map(campaign => (
-                                    <TableCampaing key={campaign._id} campaign={campaign} />
+                                    <TableCampaing
+                                        key={campaign._id}
+                                        campaign={campaign}
+                                        myCampaigns={myCampaigns}
+                                        setMyCampaigns={setMyCampaigns}
+                                    />
                                 ))
                             }
                         </tbody>
                     </table>
                 </div>
             ) : (
-                <div className="bg-base-200 py-20 rounded-2xl px-2">
-                    <div className="text-center text-xl font-medium mb-5">No campaigns found for your account.</div>
-                    <div className="text-center text-gray-500 mb-5">Start your first crowdfunding campaign and share it with the world.</div>
+                <div className="bg-base-200 py-20 rounded-2xl">
+                    <div className="text-center text-gray-500 mb-5">No campaigns found for your account.</div>
+                    <div className="text-center text-gray-500 mb-10">Start your first crowdfunding campaign and share it with the world.</div>
                     <div className="flex justify-center">
                         <Link to={"/addCampaign"} className="btn btn-primary">Create Your First Campaign</Link>
                     </div>
