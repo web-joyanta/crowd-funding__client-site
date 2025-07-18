@@ -6,7 +6,7 @@ const AllCampaign = () => {
     const dataReverse = [...loaderData].reverse();
     // console.log(dataReverse);
     return (
-        <div className="max-w-7xl mx-auto px-5 mt-7">
+        <div className="max-w-7xl mx-auto px-5 my-7">
             <h2 className="text-3xl md:text-4xl font-bold mt-20">All Campaigns</h2>
             <p className="text-[#4B5563] mt-5">Discover campaigns from around the world and support causes you care about.</p>
 

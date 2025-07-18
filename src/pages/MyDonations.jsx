@@ -13,7 +13,7 @@ const MyDonations = () => {
         : [];
 
     return (
-        <div className="max-w-7xl mx-auto px-5 mt-7">
+        <div className="max-w-7xl mx-auto px-5 my-7">
             <h2 className="text-3xl md:text-4xl font-bold mt-20">My Donations</h2>
             <p className="text-[#4B5563] my-5">Track all the campaigns you've supported</p>
             {user && myDonations.length > 0 ? (

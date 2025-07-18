@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CampaingLife = () => {
     return (
         <div className="bg-linear-to-r from-sky-500 via-indigo-500 to-violet-500 mt-20">
-            <div className="max-w-7xl mx-auto px-5 mt-7 mb-7 py-16 text-center">
+            <div className="max-w-7xl mx-auto px-5 mt-7 py-16 text-center">
                 <div className="flex justify-center text-5xl font-medium text-yellow-300 pb-5"><LuSparkles /></div>
                 <h2 className="text-white text-4xl font-medium">Ready to Bring Your Ideas to Life?</h2>
                 <p className="text-white lg:px-72 py-5">Join thousands of creators and backers on CrowdCube and start making an impact today.</p>

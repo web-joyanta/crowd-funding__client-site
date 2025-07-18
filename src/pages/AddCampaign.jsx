@@ -51,7 +51,7 @@ const AddCampaign = () => {
     }
     return (
         <div>
-            <div className="max-w-7xl mx-auto px-5 mt-7">
+            <div className="max-w-7xl mx-auto px-5 my-7">
                 <div className="text-white bg-linear-to-l from-sky-500 to-indigo-500 rounded-t-lg px-6 py-5">
                     <h2 className="text-2xl font-semibold">Create New Campaign</h2>
                     <p className="text-[15px] font-extralight">Fill in the details to start your fundraising journey</p>

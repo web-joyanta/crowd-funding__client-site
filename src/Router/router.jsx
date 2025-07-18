@@ -11,6 +11,7 @@ import MyDonations from "../pages/MyDonations";
 import MyCampaign from "../pages/MyCampaign";
 import PrivateRoute from "../components/PrivateRoute";
 import UpdateCampaign from "../pages/UpdateCampaign";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -76,7 +77,8 @@ const router = createBrowserRouter([
                 loader: ({ params}) => fetch(`http://localhost:5000/campaign/${params.id}`),
                 element: <UpdateCampaign></UpdateCampaign>
             }
-        ]
+        ],
+        errorElement: <ErrorPage></ErrorPage>,
     },
 ]);
 export default router;
