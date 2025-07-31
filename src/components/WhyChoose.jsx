@@ -1,12 +1,15 @@
 import { TbUsers, TbWorld } from "react-icons/tb";
 import { FiBarChart } from "react-icons/fi";
 import { MdOutlineSecurity } from "react-icons/md";
+import Lottie from "lottie-react";
+import whyChooseAnimation from "../assets/choosing.json";
 
 const WhyChoose = () => {
     return (
-        <div className="max-w-7xl mx-auto px-5 mt-7 lg:mt-40">
+        <div className="max-w-7xl mx-auto px-5 mt-7 lg:mt-10">
             <div>
-                <h2 className="text-center text-3xl md:text-4xl font-bold mt-20">Why Choose CrowdCube?</h2>
+                <Lottie animationData={whyChooseAnimation} className="w-96 mx-auto"></Lottie>
+                <h2 className="text-center text-3xl md:text-4xl font-bold">Why Choose CrowdCube?</h2>
                 <p className="text-[#4B5563] text-center mt-5 lg:px-72">Our platform provides everything you need to successfully fund your project or support causes you care about.</p>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 mt-12">
