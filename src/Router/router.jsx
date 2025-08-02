@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                loader: () => fetch("http://localhost:5000/campaigns"),
+                loader: () => fetch("https://backend-crowd-funding.vercel.app/campaigns"),
                 element: <Home></Home>
             },
             {
@@ -43,38 +43,38 @@ const router = createBrowserRouter([
             },
             {
                 path: "/campaigns",
-                loader: () => fetch("http://localhost:5000/campaigns"),
+                loader: () => fetch("https://backend-crowd-funding.vercel.app/campaigns"),
                 element: <AllCampaign></AllCampaign>
             },
             {
                 path: "/campaign/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params.id}`),
+                loader: ({ params }) => fetch(`https://backend-crowd-funding.vercel.app/campaign/${params.id}`),
                 element: <PrivateRoute>
                     <Details></Details>
                 </PrivateRoute>
             },
             {
                 path: "/donate/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/donate/${params.id}`),
+                loader: ({ params }) => fetch(`https://backend-crowd-funding.vercel.app/donate/${params.id}`),
                 element: <Details></Details>
             },
             {
                 path: "/myDonations",
-                loader: () => fetch("http://localhost:5000/donateds"),
+                loader: () => fetch("https://backend-crowd-funding.vercel.app/donateds"),
                 element: <PrivateRoute>
                     <MyDonations></MyDonations>
                 </PrivateRoute>
             },
             {
                 path: "/myCampaign",
-                loader: () => fetch("http://localhost:5000/campaigns"),
+                loader: () => fetch("https://backend-crowd-funding.vercel.app/campaigns"),
                 element: <PrivateRoute>
                     <MyCampaign></MyCampaign>
                 </PrivateRoute>
             },
             {
                 path: "/updateCampaign/:id",
-                loader: ({ params}) => fetch(`http://localhost:5000/campaign/${params.id}`),
+                loader: ({ params }) => fetch(`https://backend-crowd-funding.vercel.app/campaign/${params.id}`),
                 element: <UpdateCampaign></UpdateCampaign>
             }
         ],

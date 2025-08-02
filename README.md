@@ -1,12 +1,37 @@
-# React + Vite
+# Crowdcube: A Crowd Funding Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Site: [https://crowd-funding-d0b75.web.app/](https://crowd-funding-d0b75.web.app/)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🏆 **Create & Manage Campaigns:** Users can add, update, and delete their own fundraising campaigns with images, descriptions, deadlines, and minimum donation amounts.
+- 🔒 **Authentication & Protected Routes:** Secure email/password login and Google authentication. Private routes for adding campaigns, viewing donations, and managing personal campaigns.
+- 📱 **Responsive Design:** Fully responsive layout for mobile, tablet, and desktop devices.
+- 🎨 **Unique UI & Dark/Light Theme:** Custom design with a theme toggle, animated banners, and interactive elements using Lottie and React Awesome Reveal.
+- ⚡ **Real-Time Feedback:** Toast/sweet alerts for all actions (success/error), loading spinners, and confirmation modals for deletes.
+- 📊 **Campaign Sorting & Filtering:** Sort campaigns by minimum donation amount and view only running (active) campaigns.
+- 🔍 **Detailed Campaign Pages:** View all campaign details, donate if the deadline is active, and see donation history.
+- 🛡️ **Environment Security:** Sensitive keys (Firebase, MongoDB) are hidden using environment variables.
+- 🚦 **404 & Error Handling:** Custom 404 Not Found page and robust error handling for all routes.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React, Vite, Tailwind CSS
+- Firebase Authentication
+- MongoDB (with Express/Node.js backend)
+- SweetAlert2, React Toastify
+- Lottie React, React Awesome Reveal
+
+## Notable Commits
+
+- 15+ client-side commits
+- 8+ server-side commits
+
+## Hosting
+
+- Client: Netlify
+- Server: Vercel
+
+---
+
+> Crowdcube is a unique crowdfunding platform for personal, creative, and startup projects. No lorem ipsum, no default alerts—just a modern, secure, and user-friendly experience.

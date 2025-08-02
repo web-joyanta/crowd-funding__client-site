@@ -40,7 +40,7 @@ const UpdateCampaign = () => {
         const userName = user?.displayName;
         const userEmail = user?.email;
         const newCampaign = { photo, title, date, amount, description, campaignType, userPhoto, userName, userEmail };
-        fetch(`http://localhost:5000/campaigns/${_id}`, {
+        fetch(`https://backend-crowd-funding.vercel.app/campaigns/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

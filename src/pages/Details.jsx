@@ -37,7 +37,7 @@ const Details = () => {
         const donateInfo = {
             title, photo, description, amount, date, campaignType, userPhoto, userName, userEmail, donate, donateDate, donateName, donateEmail
         }
-        fetch("http://localhost:5000/donateds", {
+        fetch("https://backend-crowd-funding.vercel.app/donateds", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
